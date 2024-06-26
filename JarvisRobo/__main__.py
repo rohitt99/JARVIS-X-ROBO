@@ -222,7 +222,7 @@ def start(update: Update, context: CallbackContext):
                 PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
             )
             time.sleep(1.25)
-            lol.edit_text("💻")
+            lol.edit_text("🥵")
             time.sleep(1.0)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.5)
@@ -471,7 +471,7 @@ def Source_about_callback(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
                 [
              [
-                 InlineKeyboardButton(text="sᴏᴜʀᴄᴇ", url="https://github.com/doraemon890/JARVIS-X-ROBO")
+                 InlineKeyboardButton(text="sᴏᴜʀᴄᴇ", url="https://graph.org/file/a5113461787b722942f36.mp4")
              ],
                  [InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="source_back")]
                 ]
@@ -743,7 +743,7 @@ def main():
                     [
                         InlineKeyboardButton(
                             text="➕ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ᴄʜᴀᴛ➕",
-                            url="https://t.me/JARVIS_N_ROBOT?startgroup=true"
+                            url="https://t.me/Imperial_mus_bot?startgroup=true"
                             )
                        ]
                 ]
