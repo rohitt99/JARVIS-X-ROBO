@@ -106,7 +106,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="❄ ᴀʙᴏᴜᴛ ❄", callback_data="Jarvis_"),
-        InlineKeyboardButton(text="✨ sᴜᴩᴩᴏʀᴛ ✨", url=f"https://t.me/JARVIS_V_SUPPORT"),
+        InlineKeyboardButton(text="✨ sᴜᴩᴩᴏʀᴛ ✨", url=f"https://t.me/IMPERILMENT_SUPPORT"),
     ],
    [
         InlineKeyboardButton(text="🥀 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🥀", url=f"tg://user?id={OWNER_ID}"),
@@ -415,7 +415,7 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                             text="sᴜᴩᴩᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"
                         ),
                         InlineKeyboardButton(
-                            text="ᴜᴩᴅᴀᴛᴇs", url=f"https://t.me/JARVIS_V_SUPPORT"
+                            text="ᴜᴩᴅᴀᴛᴇs", url=f"https://t.me/IMPERILMENT_SUPPORT"
                         ),
                     ],
                     [
@@ -423,7 +423,7 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                             text="ᴅᴇᴠᴇʟᴏᴩᴇʀ", url=f"tg://user?id={OWNER_ID}"
                         ),
                         InlineKeyboardButton(
-                            text="ɢɪᴛʜᴜʙ", url="https://github.com/doraemon890",
+                            text="ɢɪᴛʜᴜʙ", url="https://graph.org/file/9e91fbefb19e83a119f17.mp4",
                         ),
                     ],
                     [
@@ -460,10 +460,10 @@ def Source_about_callback(update: Update, context: CallbackContext):
 ᴀɴᴅ ᴜsɪɴɢ [sǫʟᴀʟᴄʜᴇᴍʏ](https://www.sqlalchemy.org) ᴀɴᴅ [ᴍᴏɴɢᴏ](https://cloud.mongodb.com) ᴀs ᴅᴀᴛᴀʙᴀsᴇ.
 
 
-ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ɢɪᴛʜᴜʙ](https://github.com/doraemon890/JARVIS-X-ROBO)
+ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ɢɪᴛʜᴜʙ](https://graph.org/file/9e91fbefb19e83a119f17.mp4)
 
 
-{BOT_NAME} ɪs ʟɪᴄᴇɴsᴇᴅ ᴜɴᴅᴇʀ ᴛʜᴇ [ᴍɪᴛ ʟɪᴄᴇɴsᴇ](https://github.com/doraemon890/JARVIS-X-ROBO/master/LICENSE).
+{BOT_NAME} ɪs ʟɪᴄᴇɴsᴇᴅ ᴜɴᴅᴇʀ ᴛʜᴇ [ᴍɪᴛ ʟɪᴄᴇɴsᴇ](https://graph.org/file/9e91fbefb19e83a119f17.mp4).
 © 2024 - 2025 | [sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ](https://t.me/{SUPPORT_CHAT}), ᴀʟʟ ʀɪɢʜᴛs ʀᴇsᴇʀᴠᴇᴅ.
 """,
             parse_mode=ParseMode.MARKDOWN,
@@ -756,7 +756,7 @@ def main():
                 caption=f"""
 ✨ㅤ{BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ.
 ━━━━━━━━━━━━━
-**ᴍᴀᴅᴇ 💗 ʙʏ ᴊᴀʀᴠɪs**
+**ᴍᴀᴅᴇ 💗 ʙʏ ROHIT**
 **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ:** `{y()}`
 **ʟɪʙʀᴀʀʏ ᴠᴇʀsɪᴏɴ:** `{telever}`
 **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪᴏɴ:** `{tlhver}`
