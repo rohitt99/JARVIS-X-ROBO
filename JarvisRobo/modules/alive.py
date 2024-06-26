@@ -10,13 +10,13 @@ from telethon import __version__ as tver
 from JarvisRobo import SUPPORT_CHAT, pbot, BOT_USERNAME, OWNER_ID, BOT_NAME, START_IMG
 
 # Video URL
-VIDEO_URL = "https://graph.org/file/c3b6db252f9b089a7d14a.mp4"
+VIDEO_URL = "https://graph.org/file/b3b4c0296eb557d47bd0a.mp4"
 
 # Inline keyboard markup
 Jarvis = [
     [
         InlineKeyboardButton(text="ᴊᴀʀᴠɪs", user_id=OWNER_ID),
-        InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/JARVIS_V_SUPPORT"),
+        InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/IMPERILMENT_SUPPORT"),
     ],
     [
         InlineKeyboardButton(
@@ -52,7 +52,7 @@ async def send_alive_message(client, message: Message):
         video=video_file_path,
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{BOT_NAME}](f"t.me/{BOT_USERNAME}")』**
 ━━━━━━━━━━━━━━━━━━━
-» **ᴍʏ ᴏᴡɴᴇʀ :** [ᴏᴡɴᴇʀ](https://t.me/JARVIS_V2)
+» **ᴍʏ ᴏᴡɴᴇʀ :** [ᴏᴡɴᴇʀ](https://t.me/ROHIT_LEGEND)
 
 » **ʟɪʙʀᴀʀʏ ᴠᴇʀsɪᴏɴ :** `{lver}`
 
