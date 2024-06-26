@@ -46,9 +46,9 @@ if ENV:
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     NO_LOAD = os.environ.get("NO_LOAD", "").split()
     START_IMG = os.environ.get("START_IMG", "")
-    HELP_IMG = os.environ.get("HELP_IMG", "https://telegra.ph/file/61296490da95c55a1d5ee.jpg")
+    HELP_IMG = os.environ.get("HELP_IMG", "https://graph.org/file/b3b4c0296eb557d47bd0a.mp4")
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", True))
-    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", "Dora_Hub")
+    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", "MPERILMENT_SUPPORT")
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     TOKEN = os.environ.get("TOKEN", None)
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
@@ -66,7 +66,7 @@ if ENV:
 
     try:
         DRAGONS = set(int(x) for x in os.environ.get("DRAGONS", "").split())
-        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "7157587567").split())
+        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "6722550550").split())
     except ValueError:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
 
