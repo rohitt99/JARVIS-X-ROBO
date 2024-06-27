@@ -42,8 +42,7 @@ def weather(client, message):
         weather_url = f"https://wttr.in/{location}.png"
         
         # Reply with the weather information as a photo
-        message.reply_photo(photo=weather_url, caption="❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ ๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐"
-                            
+       
 __help__ = """
 ɪ ᴄᴀɴ ғɪɴᴅ ᴡᴇᴀᴛʜᴇʀ ᴏғ ᴀʟʟ ᴄɪᴛɪᴇs
 
