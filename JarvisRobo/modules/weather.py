@@ -34,7 +34,16 @@ async def _(event):
         with io.BytesIO(response_api) as out_file:
             await event.reply(file=out_file)
 
-
+def weather(client, message):
+    try:
+        # Get the location from user message
+        user_input = message.command[1]
+        location = user_input.strip()
+        weather_url = f"https://wttr.in/{location}.png"
+        
+        # Reply with the weather information as a photo
+        message.reply_photo(photo=weather_url, caption="❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ ๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐"
+                            
 __help__ = """
 ɪ ᴄᴀɴ ғɪɴᴅ ᴡᴇᴀᴛʜᴇʀ ᴏғ ᴀʟʟ ᴄɪᴛɪᴇs
 
