@@ -4,17 +4,17 @@ class Config(object):
     # REQUIRED
     # Login to https://my.telegram.org and fill in these slots with the details given by it
 
-    API_ID = "" # integer value, dont use ""
-    API_HASH = ""
-    TOKEN = ""  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
+    API_ID = "25830228" # integer value, dont use ""
+    API_HASH = "a23a5133bddbdab87df3df06ccf63a89"
+    TOKEN = "7076111479:AAFRuKfDEHWnhhvkj3QvEF4clIawDJQVdLc"  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
     OWNER_ID = "6722550550" # If you dont know, run the bot and do /id in your private chat with it, also an integer
     
     SUPPORT_CHAT = "IMPERILMENT_SUPPORT"  # Your own group for support, do not add the @
-    START_IMG = ""
-    EVENT_LOGS = ()  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
+    START_IMG = "https://graph.org/file/fc3fff668765511b35f5b.jpg"
+    EVENT_LOGS = (-1001977784654)  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
     MONGO_DB_URI= "mongodb+srv://MANAGERDB:RAJNISHAYUSHI@managerdb.lfnlzdk.mongodb.net/?retryWrites=true&w=majority&appName=managerdb"
     # RECOMMENDED
-    DATABASE_URL = ""  # A sql database url from elephantsql.com
+    DATABASE_URL = "postgresql://xrlkskby:gobwyeqocauwmdrggqom@alpha.mkdb.sh:5432/rjfvbvce"  # A sql database url from elephantsql.com
     CASH_API_KEY = (
         "X652FNVGJ0ZXABM0"  # Get your API key from https://www.alphavantage.co/support/#api-key
     )
