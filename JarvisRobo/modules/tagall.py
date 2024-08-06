@@ -80,10 +80,10 @@ async def cancel_spam(event):
         return await event.respond("There is no mention process going on.")
 
     if not await is_user_admin(chat_id, event.sender_id):
-        return await event.respond("Only admins can execute this command!")
+        return await event.respond("Bsdk Pahle Admin Se Permission Le 🤫")
 
     spam_chats[chat_id]['active'] = False
-    return await event.respond("Mention process stopped.")
+    return await event.respond("I stop tagging, sir 🫡")
 
 @client.on(events.NewMessage(pattern=r"^/help tagall$"))
 async def help_tagall(event):
