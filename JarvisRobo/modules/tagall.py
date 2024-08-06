@@ -26,14 +26,15 @@ async def mention_all(event):
     if not await is_user_admin(event.chat_id, event.sender_id):
         return await event.respond("Only admins can mention all!")
 
-    msg = event.pattern_match.group(2).strip() if event.pattern_match.group(2) else None
+    msg_text = event.pattern_match.group(2).strip() if event.pattern_match.group(2) else None
 
     if event.is_reply:
         msg = await event.get_reply_message()
         if msg is None:
             return await event.respond("I can't mention members for older messages!")
+        msg_text = msg.text if not msg_text else msg_text
 
-    if not msg:
+    if not msg_text:
         return await event.respond("Reply to a message or provide some text to mention others!")
 
     spam_chats.append(chat_id)
@@ -45,17 +46,17 @@ async def mention_all(event):
             break
         usrnum += 1
         usrtxt += f"[{user.first_name}](tg://user?id={user.id}), "
-        if usrnum == 5:  # Reduce batch size to 5 to avoid message length issues
-            txt = f"{msg}\n{usrtxt}" if isinstance(msg, str) else f"{usrtxt}"
-            await client.send_message(chat_id, txt)
+        if usrnum == 5:  # Reduced batch size to 5 to avoid message length issues
+            txt = f"{msg_text}\n{usrtxt}"
+            await client.send_message(chat_id, txt, reply_to=msg.id if event.is_reply else None)
             await asyncio.sleep(2)  # Reduced sleep time to make it more responsive
             usrnum = 0
             usrtxt = ""
 
     # Send remaining users if any
     if usrnum > 0 and chat_id in spam_chats:
-        txt = f"{msg}\n{usrtxt}" if isinstance(msg, str) else f"{usrtxt}"
-        await client.send_message(chat_id, txt)
+        txt = f"{msg_text}\n{usrtxt}"
+        await client.send_message(chat_id, txt, reply_to=msg.id if event.is_reply else None)
 
     spam_chats.remove(chat_id)
 
