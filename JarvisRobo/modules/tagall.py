@@ -54,7 +54,7 @@ async def mention_all(event):
         usrtxt += f"🦋 [{user.first_name}](tg://user?id={user.id})\n"  # Add a newline after each tag
 
         if usrnum == 5:  # Batch size is 5
-            txt = usrtxt.strip()
+            txt = f"{msg_text}\n\n{usrtxt.strip()}"
             if event.is_reply:
                 await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
             else:
@@ -68,7 +68,7 @@ async def mention_all(event):
 
     # Send remaining users if any
     if usrnum > 0 and chat_id in spam_chats and spam_chats[chat_id]['active']:
-        txt = usrtxt.strip()
+        txt = f"{msg_text}\n\n{usrtxt.strip()}"
         if event.is_reply:
             await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
         else:
