@@ -46,9 +46,9 @@ async def mention_all(event):
         if chat_id not in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"[{user.first_name}](tg://user?id={user.id}), "
+        usrtxt += f"🦋 [{user.first_name}](tg://user?id={user.id}), "
         if usrnum == 5:  # Batch size is 5
-            txt = f"🦋 {usrtxt.strip()}"
+            txt = usrtxt.strip()
             if event.is_reply:
                 await client.send_message(chat_id, txt, reply_to=msg.id)
             else:
@@ -59,7 +59,7 @@ async def mention_all(event):
 
     # Send remaining users if any
     if usrnum > 0 and chat_id in spam_chats:
-        txt = f"🦋 {usrtxt.strip()}"
+        txt = usrtxt.strip()
         if event.is_reply:
             await client.send_message(chat_id, txt, reply_to=msg.id)
         else:
