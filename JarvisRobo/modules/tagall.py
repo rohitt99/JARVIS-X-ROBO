@@ -51,7 +51,8 @@ async def mention_all(event):
             return await event.respond("Mention process stopped.")
 
         usrnum += 1
-        usrtxt += f"🦋 [{user.first_name}](tg://user?id={user.id}), "
+        usrtxt += f"🦋 [{user.first_name}](tg://user?id={user.id})\n"  # Add a newline after each tag
+
         if usrnum == 5:  # Batch size is 5
             txt = usrtxt.strip()
             if event.is_reply:
@@ -61,6 +62,9 @@ async def mention_all(event):
             usrtxt = ""  # Clear the text after sending
             usrnum = 0
             await asyncio.sleep(2)  # Sleep to avoid spamming
+
+            # Send an empty message to ensure a 2-line space
+            await client.send_message(chat_id, "\n\n")
 
     # Send remaining users if any
     if usrnum > 0 and chat_id in spam_chats and spam_chats[chat_id]['active']:
