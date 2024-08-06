@@ -1,8 +1,6 @@
 import io
-
 import aiohttp
 from telethon.tl import functions, types
-
 from JarvisRobo import telethn as tbot
 from JarvisRobo.events import register
 
@@ -24,22 +22,24 @@ async def _(event):
     if event.fwd_from:
         return
 
-    sample_url = "https://wttr.in/{location}.png"
-    # logger.info(sample_url)
+    sample_url = "https://wttr.in/{}.png"
     input_str = event.pattern_match.group(1)
+    
     async with aiohttp.ClientSession() as session:
-        response_api_zero = await session.get(sample_url.format(input_str))
-        # logger.info(response_api_zero)
-        response_api = await response_api_zero.read()
-        with io.BytesIO(response_api) as out_file:
-            await event.reply(file=out_file)
-
+        try:
+            response_api_zero = await session.get(sample_url.format(input_str))
+            response_api_zero.raise_for_status()
+            response_api = await response_api_zero.read()
+            with io.BytesIO(response_api) as out_file:
+                await event.reply(file=out_file)
+        except aiohttp.ClientError as e:
+            await event.reply(f"An error occurred: {e}")
 
 __help__ = """
-ɪ ᴄᴀɴ ғɪɴᴅ ᴡᴇᴀᴛʜᴇʀ ᴏғ ᴀʟʟ ᴄɪᴛɪᴇs
+I can find the weather for any city.
 
- ❍ /weather <ᴄɪᴛʏ>*:* ᴀᴅᴠᴀɴᴄᴇᴅ ᴡᴇᴀᴛʜᴇʀ ᴍᴏᴅᴜʟᴇ, ᴜsᴀɢᴇ sᴀᴍᴇ ᴀs /ᴡᴇᴀᴛʜᴇʀ
- ❍ /weather  ᴍᴏᴏɴ*:* ɢᴇᴛ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ sᴛᴀᴛᴜs ᴏғ ᴍᴏᴏɴ
+ ❍ /weather <city>*:* Advanced weather module, usage same as /weather
+ ❍ /weather moon*:* Get the current status of the moon
 """
 
-__mod_name__ = "Wᴇᴀᴛʜᴇʀ"
+__mod_name__ = "Weather"
