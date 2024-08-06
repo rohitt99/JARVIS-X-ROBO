@@ -45,12 +45,17 @@ async def mention_all(event):
             break
         usrnum += 1
         usrtxt += f"[{user.first_name}](tg://user?id={user.id}), "
-        if usrnum == 15:
+        if usrnum == 5:  # Reduce batch size to 5 to avoid message length issues
             txt = f"{msg}\n{usrtxt}" if isinstance(msg, str) else f"{usrtxt}"
             await client.send_message(chat_id, txt)
-            await asyncio.sleep(3)
+            await asyncio.sleep(2)  # Reduced sleep time to make it more responsive
             usrnum = 0
             usrtxt = ""
+
+    # Send remaining users if any
+    if usrnum > 0 and chat_id in spam_chats:
+        txt = f"{msg}\n{usrtxt}" if isinstance(msg, str) else f"{usrtxt}"
+        await client.send_message(chat_id, txt)
 
     spam_chats.remove(chat_id)
 
