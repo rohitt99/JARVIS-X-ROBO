@@ -1,6 +1,4 @@
-import io
 import aiohttp
-from telethon.tl import functions, types
 from JarvisRobo import telethn as tbot
 from JarvisRobo.events import register
 
@@ -22,17 +20,15 @@ async def _(event):
     if event.fwd_from:
         return
 
-    sample_url = "https://wttr.in/{}.png"
+    sample_url = "https://wttr.in/{}?format=3"
     input_str = event.pattern_match.group(1)
     
     async with aiohttp.ClientSession() as session:
         try:
             response_api_zero = await session.get(sample_url.format(input_str))
             response_api_zero.raise_for_status()
-            response_api = await response_api_zero.read()
-            with io.BytesIO(response_api) as out_file:
-                out_file.name = f"{input_str}.png"
-                await event.reply(file=out_file, force_document=True)
+            response_api = await response_api_zero.text()
+            await event.reply(response_api)
         except aiohttp.ClientError as e:
             await event.reply(f"An error occurred: {e}")
 
