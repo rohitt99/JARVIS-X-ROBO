@@ -32,7 +32,8 @@ async def mention_all(event):
         msg = await event.get_reply_message()
         if msg is None:
             return await event.respond("I can't mention members for older messages!")
-        msg_text = msg.text if not msg_text else msg_text
+        if not msg_text:
+            msg_text = msg.text
 
     if not msg_text:
         return await event.respond("Reply to a message or provide some text to mention others!")
@@ -47,16 +48,24 @@ async def mention_all(event):
         usrnum += 1
         usrtxt += f"[{user.first_name}](tg://user?id={user.id}), "
         if usrnum == 5:  # Reduced batch size to 5 to avoid message length issues
-            txt = f"{msg_text}\n{usrtxt}"
-            await client.send_message(chat_id, txt, reply_to=msg.id if event.is_reply else None)
+            if event.is_reply:
+                txt = usrtxt
+                await client.send_message(chat_id, txt, reply_to=msg.id)
+            else:
+                txt = f"{msg_text}\n{usrtxt}"
+                await client.send_message(chat_id, txt)
             await asyncio.sleep(2)  # Reduced sleep time to make it more responsive
             usrnum = 0
             usrtxt = ""
 
     # Send remaining users if any
     if usrnum > 0 and chat_id in spam_chats:
-        txt = f"{msg_text}\n{usrtxt}"
-        await client.send_message(chat_id, txt, reply_to=msg.id if event.is_reply else None)
+        if event.is_reply:
+            txt = usrtxt
+            await client.send_message(chat_id, txt, reply_to=msg.id)
+        else:
+            txt = f"{msg_text}\n{usrtxt}"
+            await client.send_message(chat_id, txt)
 
     spam_chats.remove(chat_id)
 
