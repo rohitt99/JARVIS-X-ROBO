@@ -31,7 +31,8 @@ async def _(event):
             response_api_zero.raise_for_status()
             response_api = await response_api_zero.read()
             with io.BytesIO(response_api) as out_file:
-                await event.reply(file=out_file)
+                out_file.name = f"{input_str}.png"
+                await event.reply(file=out_file, force_document=True)
         except aiohttp.ClientError as e:
             await event.reply(f"An error occurred: {e}")
 
