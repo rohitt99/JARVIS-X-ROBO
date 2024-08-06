@@ -5,7 +5,7 @@ from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 from JarvisRobo import telethn as client
 
-spam_chats = []
+spam_chats = {}  # Use a dictionary to track active tagging processes
 
 async def is_user_admin(chat_id, user_id):
     try:
@@ -38,19 +38,24 @@ async def mention_all(event):
     if not msg_text:
         return await event.respond("Reply to a message or provide some text to mention others!")
 
-    spam_chats.append(chat_id)
+    if chat_id in spam_chats:
+        return await event.respond("A mention process is already ongoing. Use `/cancel` to stop it.")
+
+    spam_chats[chat_id] = {'active': True, 'msg_id': msg.id if event.is_reply else None}
+
     usrnum = 0
     usrtxt = ""
 
     async for user in client.iter_participants(chat_id):
-        if chat_id not in spam_chats:
-            break
+        if chat_id not in spam_chats or not spam_chats[chat_id]['active']:
+            return await event.respond("Mention process stopped.")
+
         usrnum += 1
         usrtxt += f"🦋 [{user.first_name}](tg://user?id={user.id}), "
         if usrnum == 5:  # Batch size is 5
             txt = usrtxt.strip()
             if event.is_reply:
-                await client.send_message(chat_id, txt, reply_to=msg.id)
+                await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
             else:
                 await client.send_message(chat_id, txt)
             usrtxt = ""  # Clear the text after sending
@@ -58,24 +63,26 @@ async def mention_all(event):
             await asyncio.sleep(2)  # Sleep to avoid spamming
 
     # Send remaining users if any
-    if usrnum > 0 and chat_id in spam_chats:
+    if usrnum > 0 and chat_id in spam_chats and spam_chats[chat_id]['active']:
         txt = usrtxt.strip()
         if event.is_reply:
-            await client.send_message(chat_id, txt, reply_to=msg.id)
+            await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
         else:
             await client.send_message(chat_id, txt)
 
-    spam_chats.remove(chat_id)
+    del spam_chats[chat_id]  # Remove chat from active processes
 
 @client.on(events.NewMessage(pattern=r"^/cancel$"))
 async def cancel_spam(event):
-    if event.chat_id not in spam_chats:
+    chat_id = event.chat_id
+
+    if chat_id not in spam_chats:
         return await event.respond("There is no mention process going on.")
 
-    if not await is_user_admin(event.chat_id, event.sender_id):
+    if not await is_user_admin(chat_id, event.sender_id):
         return await event.respond("Only admins can execute this command!")
 
-    spam_chats.remove(event.chat_id)
+    spam_chats[chat_id]['active'] = False
     return await event.respond("Mention process stopped.")
 
 @client.on(events.NewMessage(pattern=r"^/help tagall$"))
