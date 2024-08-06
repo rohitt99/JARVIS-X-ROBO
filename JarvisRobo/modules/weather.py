@@ -20,7 +20,7 @@ async def _(event):
     if event.fwd_from:
         return
 
-    sample_url = "https://wttr.in/{}?format=%C+%t+%f+%h+%w+%m"
+    sample_url = "https://wttr.in/{}?format=%l:+%c+%t+%f+%h+%w"
     input_str = event.pattern_match.group(1)
     
     async with aiohttp.ClientSession() as session:
@@ -31,13 +31,13 @@ async def _(event):
             
             # Extracting data from the response
             data_parts = response_api.split()
-            condition = data_parts[0]
-            temperature = data_parts[1]
-            feels_like = data_parts[2]
-            humidity = data_parts[3]
-            wind_speed = data_parts[4]
-            location = input_str
-
+            location = data_parts[0]
+            condition = data_parts[1]
+            temperature = data_parts[2]
+            feels_like = data_parts[3]
+            humidity = data_parts[4]
+            wind_speed = data_parts[5]
+            
             # Formatting the message
             weather_report = (
                 f"{location}:\n\n"
