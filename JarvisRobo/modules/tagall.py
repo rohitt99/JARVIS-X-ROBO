@@ -57,10 +57,7 @@ async def mention_all(event):
 
             if usrnum == 5:  # Batch size is 5
                 txt = f"{msg_text}\n\n{usrtxt.strip()}"
-                if event.is_reply:
-                    await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
-                else:
-                    await client.send_message(chat_id, txt)
+                await client.send_message(chat_id, txt)
                 usrtxt = ""  # Clear the text after sending
                 usrnum = 0
                 await asyncio.sleep(2)  # Sleep to avoid spamming
@@ -71,10 +68,7 @@ async def mention_all(event):
         # Send remaining users if any
         if usrnum > 0 and chat_id in spam_chats and spam_chats[chat_id]['active']:
             txt = f"{msg_text}\n\n{usrtxt.strip()}"
-            if event.is_reply:
-                await client.send_message(chat_id, txt, reply_to=spam_chats[chat_id]['msg_id'])
-            else:
-                await client.send_message(chat_id, txt)
+            await client.send_message(chat_id, txt)
     finally:
         if chat_id in spam_chats:
             del spam_chats[chat_id]  # Ensure chat is removed from active processes even if an error occurs
